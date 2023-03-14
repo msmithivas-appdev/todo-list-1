@@ -1,4 +1,3 @@
- <h1>Hello</h1>
  
  <a href="/">Your todo list</a>
       |
@@ -22,7 +21,7 @@
 
         <input type="text" id="content_box" name="query_description">
         <input type="hidden" name="query_status" value="Next up">
-        <input type="text" name="query_user_id" value="<%= session[:user_id]%>">
+        <input type="hidden" name="query_user_id" value="<%= session[:user_id]%>">
       </div>
 
       <button>
@@ -39,23 +38,24 @@
   <ul>
       <% next_todos = Todo.where({:status => "Next up"}) %>
       <% next_todos.each do |a_todo| %>
+      
       <li>
         <div><%= a_todo.description %></div>
 
         <small>
-          <%= time_ago_in_words(a_todo.created_at)%>
+          <%= "Added " + time_ago_in_words(a_todo.created_at) + " ago" %>
 
           <a href="/delete_todo/<%= a_todo.id %>">Delete</a>
         </small>
+      </li>
 
-        <form action="/modify_todo/#{a_todo.id}" method="post">
+        <form action="/modify_todo/" method="post">
         <input type="hidden" name="query_status" value="In Progress">
         <input type="hidden" name="path_id" value="<%= a_todo.id %>">
           <button>Move to In Progress</button>
         </form>
-      </li>
       <% end %>
-  </ul>>
+  </ul>
 </div>
 
 <div class="in_progress" style="color:darkgreen">
@@ -66,13 +66,14 @@
      <% next_todos = Todo.where({:status => "In Progress"}) %>
      <% next_todos.each do |a_todo| %>
 
-      <li>
+     <li>
+      
       <div><%= a_todo.description %></div>
 
         <small>
-          <%= time_ago_in_words(a_todo.created_at)%>
+          <%= "Started " + time_ago_in_words(a_todo.created_at) + " ago"%>
 
-          <a href="/delete_todo/#{a_todo.id}">Delete</a>
+          <a href="/delete_todo/">Delete</a>
         </small>
 
         <form action="/modify_todo/<%= a_todo.id %>" method="post">
@@ -82,23 +83,28 @@
         </form>
       </li>
     <% end %>
+      </ul>
+      </div>
       
   <div class="done" style="color:grey">
 
   <h2>Done</h2>
 
-  <ul>
+    <ul>
        <% next_todos = Todo.where({:status => "Done"}) %>
        <% next_todos.each do |a_todo| %>
+      
       <li>
        <div><%= a_todo.description %></div>
 
         <small>
-          <%= time_ago_in_words(a_todo.created_at)%>
+          <%= "Completed at " + time_ago_in_words(a_todo.created_at) %>
 
-          <a href="/delete_todo/#{a_todo.id}">Delete</a>
+          <a href="/delete_todo/">Delete</a>
         </small>
 
         
-      <li>
+      </li>
        <% end %>
+  </ul>
+  </div>

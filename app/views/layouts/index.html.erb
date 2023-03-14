@@ -71,9 +71,9 @@
       <div><%= a_todo.description %></div>
 
         <small>
-          <%= "Started " + time_ago_in_words(a_todo.created_at) + " ago"%>
+          <%= "Started " + time_ago_in_words(a_todo.updated_at) + " ago"%>
 
-          <a href="/delete_todo/">Delete</a>
+          <a href="/delete_todo/<%= a_todo.id %>">Delete</a>
         </small>
 
         <form action="/modify_todo/<%= a_todo.id %>" method="post">
@@ -98,9 +98,9 @@
        <div><%= a_todo.description %></div>
 
         <small>
-          <%= "Completed at " + time_ago_in_words(a_todo.created_at) %>
+          <%= "Completed at " + (a_todo.updated_at.strftime("%l:%M%P on %d-%b-%Y")) %>
 
-          <a href="/delete_todo/">Delete</a>
+          <a href="/delete_todo/<%= a_todo.id %>">Delete</a>
         </small>
 
         

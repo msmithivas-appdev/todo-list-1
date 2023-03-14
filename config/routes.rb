@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   post("/modify_todo/:path_id", { :controller => "todos", :action => "update" })
   
   # DELETE
-  get("/delete_todo", { :controller => "todos", :action => "destroy" })
   get("/delete_todo/:path_id", { :controller => "todos", :action => "destroy" })
+  get("/delete_todo", { :controller => "todos", :action => "destroy" })
 
   #------------------------------
 

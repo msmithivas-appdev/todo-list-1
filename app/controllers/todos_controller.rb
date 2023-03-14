@@ -36,8 +36,8 @@ class TodosController < ApplicationController
     the_todo = Todo.where({ :id => the_id }).at(0)
 
     the_todo.status = params.fetch("query_status")
-    the_todo.user_id = params.fetch("query_user_id")
-    the_todo.description = params.fetch("query_description")
+    # the_todo.user_id = params.fetch("query_user_id")
+    # the_todo.description = params.fetch("query_description")
 
     if the_todo.valid?
       the_todo.save

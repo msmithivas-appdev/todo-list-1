@@ -48,8 +48,9 @@
           <a href="/delete_todo/#{a_todo.id}">Delete</a>
         </small>
 
-        <form action="/modify_todo/:path_id" method="post">
+        <form action="/modify_todo/#{a_todo.id}" method="post">
         <input type="hidden" name="query_status" value="In Progress">
+        <input type="hidden" name="path_id" value="<%= a_todo.id %>">
           <button>Move to In Progress</button>
         </form>
       </li>

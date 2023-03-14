@@ -12,6 +12,8 @@ Rails.application.routes.draw do
   
   # UPDATE
   
+  post("/modify_todo", { :controller => "todos", :action => "update" })
+
   post("/modify_todo/:path_id", { :controller => "todos", :action => "update" })
   
   # DELETE

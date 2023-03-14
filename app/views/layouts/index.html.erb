@@ -33,7 +33,7 @@
 </div>
 
 
-<div class="next_up" color="darkorange">
+<div class="next_up" style="color:darkorange">
   <h2>Next Up</h2>
 
   <ul>
@@ -45,7 +45,7 @@
         <small>
           <%= time_ago_in_words(a_todo.created_at)%>
 
-          <a href="/delete_todo/#{a_todo.id}">Delete</a>
+          <a href="/delete_todo/<%= a_todo.id %>">Delete</a>
         </small>
 
         <form action="/modify_todo/#{a_todo.id}" method="post">
@@ -58,7 +58,7 @@
   </ul>>
 </div>
 
-<div class="in_progress" color="darkgreen">
+<div class="in_progress" style="color:darkgreen">
 
   <h2>In Progress</h2>
 
@@ -75,14 +75,15 @@
           <a href="/delete_todo/#{a_todo.id}">Delete</a>
         </small>
 
-        <form action="/modify_todo/:path_id" method="post">
+        <form action="/modify_todo/<%= a_todo.id %>" method="post">
         <input type="hidden" name="query_status" value="Done">
+        <input type="hidden" name="path_id" value="<%= a_todo.id %>">
           <button>Move to Done</button>
         </form>
       </li>
     <% end %>
       
-  <div class="done" color="grey">
+  <div class="done" style="color:grey">
 
   <h2>Done</h2>
 
